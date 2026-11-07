@@ -1,0 +1,22 @@
+{
+  "name": "harny",
+  "description": "Harny, per-user memory for the apps you build: a skill that teaches your coding agent the right calls.",
+  "owner": {
+    "name": "Harny",
+    "url": "https://harny.ai"
+  },
+  "plugins": [
+    {
+      "name": "harny-memory",
+      "source": "./plugins/harny-memory",
+      "description": "Skill: build apps that remember each person, with the right Harny calls and the mistakes agents make with them.",
+      "category": "memory",
+      "keywords": [
+        "memory",
+        "per-user memory",
+        "agent memory",
+        "sdk"
+      ]
+    }
+  ]
+}
