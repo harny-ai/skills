@@ -2,7 +2,7 @@
 
 Harny gives each person who uses an app a private memory the app's AI can read, and lets an agent act for that person inside permissions the app owner sets.
 
-This repo holds a skill that teaches your coding agent the right calls.
+This repo holds a skill that shows your coding agent how to add Harny to an app.
 
 ## Install
 
