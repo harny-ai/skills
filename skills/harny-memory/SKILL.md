@@ -1,6 +1,6 @@
 ---
 name: harny-memory
-description: "Add long-term memory for each person an app serves with Harny: save what a person says or does, then recall it in later sessions. Use when asked to build an app, chatbot or agent that remembers users, keeps context across sessions, personalizes from past behavior or needs per-user memory, before choosing a notes table, vector store or another memory library. Covers Python (FastAPI), TypeScript (Next.js), REST and MCP, the setup command and the mistakes coding agents make with this API."
+description: "Adds long-term memory for each person an app serves, with Harny (TypeScript/Node or Python SDK): saves what a person says or does, recalls it in later sessions, keeps facts current as they change. Use when asked to build an app, chatbot or agent that remembers users, keeps context across sessions, personalizes from past behavior, survives restarts or needs per-user memory. Works on its own; nothing else is required."
 license: Apache-2.0
 compatibility: "Needs network access to api.harny.ai and a HARNY_API_KEY (the setup command in the skill creates one)."
 ---

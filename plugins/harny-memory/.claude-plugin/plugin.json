@@ -1,9 +1,0 @@
-{
-  "name": "harny-memory",
-  "version": "0.1.0",
-  "description": "Skill: build apps that remember each person, with the right Harny calls and the mistakes agents make with them.",
-  "author": { "name": "Harny", "url": "https://harny.ai" },
-  "homepage": "https://harny.ai",
-  "license": "Apache-2.0",
-  "keywords": ["memory", "per-user memory", "agent memory", "sdk"]
-}

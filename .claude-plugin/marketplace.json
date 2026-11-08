@@ -1,20 +1,23 @@
 {
   "name": "harny",
-  "description": "Harny, per-user memory for the apps you build: a skill that teaches your coding agent the right calls.",
+  "description": "Per-user memory, connected accounts, permitted actions and the action record for your agents.",
   "owner": {
     "name": "Harny",
     "url": "https://harny.ai"
   },
   "plugins": [
     {
-      "name": "harny-memory",
-      "source": "./plugins/harny-memory",
-      "description": "Skill: build apps that remember each person, with the right Harny calls and the mistakes agents make with them.",
+      "name": "harny",
+      "source": "./plugins/harny",
+      "description": "Six skills, one install: per-user memory, connected accounts, actions with permissions and undo, the action record, the agent loop on your own model key, and long jobs.",
       "category": "memory",
       "keywords": [
         "memory",
         "per-user memory",
-        "agent memory",
+        "connected accounts",
+        "actions",
+        "action record",
+        "agent harness",
         "sdk"
       ]
     }

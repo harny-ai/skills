@@ -1,0 +1,9 @@
+{
+  "name": "harny",
+  "version": "0.2.0",
+  "description": "Per-user memory, connected accounts, permitted actions and the action record for your agents.",
+  "author": { "name": "Harny", "url": "https://harny.ai" },
+  "homepage": "https://harny.ai",
+  "license": "Apache-2.0",
+  "keywords": ["memory", "per-user memory", "connected accounts", "actions", "action record", "agent harness", "sdk"]
+}
