@@ -49,7 +49,7 @@ await harny.undo(outcome.recordId!, { user: "user-123" });
 
 **Approval.** An action that waits for a yes comes back as a pending confirmation. With `harny.agent`: Python `await agent.confirm(pending, approve=True)`, TypeScript `await agent.confirm(pending, { approve: true })`. The model never sees the approval reference.
 
-**MCP tools** (`https://api.harny.ai/v1/mcp/mcp`, for a hosted agent runtime holding a runtime token for one person, with the scope of the action): `calendar_create_event`, `email_send`, `ticket_create`, `slack_post_message`, `notion_create_page`, `undo_action` (reverses one of the creates by record id), `action_history` (reads the record).
+**MCP tools** (`https://mcp.harny.ai`, for a hosted agent runtime holding a runtime token for one person, with the scope of the action): `calendar_create_event`, `email_send`, `ticket_create`, `slack_post_message`, `notion_create_page`, `undo_action` (reverses one of the creates by record id), `action_history` (reads the record).
 
 **What agents get wrong**
 

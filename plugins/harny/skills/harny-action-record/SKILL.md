@@ -36,7 +36,7 @@ async with HarnyClient() as harny:
 
 **REST** (app key as `Authorization: Bearer`): `GET /v1/actions` (list, with filters), `GET /v1/actions/export` (export a copy), `POST /v1/actions` (add a record for an action your own code performed).
 
-**MCP tool** (`https://api.harny.ai/v1/mcp/mcp`, a person's key `fsk_`): `action_history` returns the recorded actions for that person, newest first, each with a one-line summary. Its query is a substring of the action's target name. It is read-only.
+**MCP tool** (`https://mcp.harny.ai`, a person's key `fsk_`): `action_history` returns the recorded actions for that person, newest first, each with a one-line summary. Its query is a substring of the action's target name. It is read-only.
 
 **What a record holds.** The target (what was acted on), the status, the user, the time and the result. `list_actions` also filters by `status`, `failure_class`, `correlation_id`, `target`, `target_contains`, `since` and `until`, and pages with `cursor`.
 

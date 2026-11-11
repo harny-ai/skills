@@ -63,7 +63,7 @@ console.log(result.answer, result.pendingConfirmations.map((p) => p.public()));
 
 **Model key.** Harny reads it only from the provider's usual variable, or from `api_key` with `provider` (TypeScript: `apiKey` with `provider`). Never paste it into code.
 
-**MCP tool.** `get_setup_bundle` (app key, `https://api.harny.ai/v1/mcp/mcp`) returns the setup facts a coding assistant uses to stand up the app's agent.
+**MCP tool.** `get_setup_bundle` (app key, `https://mcp.harny.ai`) returns the setup facts a coding assistant uses to stand up the app's agent.
 
 **What agents get wrong**
 

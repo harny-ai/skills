@@ -46,7 +46,7 @@ const context = await harny.assembleContext("What did Nadia email about the budg
 
 **REST** (server side only; `Authorization: Bearer $HARNY_API_KEY` and `X-Harny-User: <user id>`): `POST /v1/context-sources/{provider}/connect`, `GET /v1/context-sources`, `POST /v1/context-sources/{provider}/sync`, `GET /v1/context-sources/{provider}/reauth-url`, `DELETE /v1/context-sources/{provider}` (disconnect ends Harny's access).
 
-**MCP tools** (`https://api.harny.ai/v1/mcp/mcp`, a person's key `fsk_`): `configure_oauth` starts connecting one source for one person and returns the link they open. `list_tools` shows which sources that person has connected.
+**MCP tools** (`https://mcp.harny.ai`, a person's key `fsk_`): `configure_oauth` starts connecting one source for one person and returns the link they open. `list_tools` shows which sources that person has connected.
 
 **What agents get wrong**
 

@@ -75,7 +75,7 @@ Mock ingestion/completion/recall, check the user on every request, and keep empt
 prove wiring only. Do not provision accounts or execute live calls when the task only authorizes local work.
 
 **REST**: `POST https://api.harny.ai/v1/memory/ingest` and `POST https://api.harny.ai/v1/memory/recall`, with
-`Authorization: Bearer $HARNY_API_KEY` and `X-Harny-User: <user id>`. **MCP**: `https://api.harny.ai/v1/mcp/mcp`.
+`Authorization: Bearer $HARNY_API_KEY` and `X-Harny-User: <user id>`. **MCP**: `https://mcp.harny.ai`.
 **Command line**: `harny ingest --user <id> "<fact>"` and `harny query --user <id> "<question>"`.
 
 Pass `user` and nothing else to name the person: leave `identity` unset. If you set `identity` as well it must equal that same user id; any other value (the word "user", for example) is refused.
