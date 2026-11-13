@@ -14,7 +14,7 @@ from trusted authentication; a caller-supplied id alone does not prove ownership
 
 ## Steps
 
-1. Use the app key the user entered in this plugin's `harny_app_key` setting; the plugin passes it to the shell as `HARNY_API_KEY`. If the setting is empty, run the setup command below once.
+1. Use the app key in `HARNY_API_KEY` (environment or `.env`; do not open or print `.env`). If it is missing, run the setup command below once.
 2. Add each person with `provision_user` before the first save for them.
 3. Save with `ingest_data_point`, wait with `wait_for_ingestion`, read with `recall`. The person's id comes from the
    project's sign-in, never from the request body.
@@ -22,7 +22,7 @@ from trusted authentication; a caller-supplied id alone does not prove ownership
    unless the task asks for it.
 
 **Key.** `HARNY_API_KEY`, saved in `.env` by `harny init` (also `HARNY_APP_ID`, `HARNY_API_URL`). Never open, print or
-paste `.env`, and never put the key in browser or mobile code. The plugin's `harny_app_key` setting supplies it when the user has entered one.
+paste `.env`, and never put the key in browser or mobile code. Do not ask anyone for it.
 
 **Python** (the SDK reads `HARNY_API_KEY`; `user` is your own stable id for the person):
 
