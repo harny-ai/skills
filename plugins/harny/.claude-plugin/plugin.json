@@ -1,9 +1,29 @@
 {
   "name": "harny",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Per-user memory, connected accounts, permitted actions and the action record for your agents.",
-  "author": { "name": "Harny", "url": "https://harny.ai" },
+  "author": {
+    "name": "Harny",
+    "url": "https://harny.ai"
+  },
   "homepage": "https://harny.ai",
   "license": "Apache-2.0",
-  "keywords": ["memory", "per-user memory", "connected accounts", "actions", "action record", "agent harness", "sdk"]
+  "keywords": [
+    "memory",
+    "per-user memory",
+    "connected accounts",
+    "actions",
+    "action record",
+    "agent harness",
+    "sdk"
+  ],
+  "userConfig": {
+    "harny_app_key": {
+      "type": "string",
+      "title": "Harny app key",
+      "description": "Optional. Your Harny app key (starts with fsa_) from console.harny.ai. Leave empty and the skills create an app for you with `harny init`.",
+      "sensitive": true,
+      "required": false
+    }
+  }
 }

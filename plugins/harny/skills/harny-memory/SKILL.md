@@ -14,8 +14,7 @@ from trusted authentication; a caller-supplied id alone does not prove ownership
 
 ## Steps
 
-1. Check the project for `HARNY_API_KEY` in its environment or `.env` without opening or printing `.env`. If it is
-   missing, run the setup command below once.
+1. Use the app key the user entered in this plugin's `harny_app_key` setting; the plugin passes it to the shell as `HARNY_API_KEY`. If the setting is empty, run the setup command below once.
 2. Add each person with `provision_user` before the first save for them.
 3. Save with `ingest_data_point`, wait with `wait_for_ingestion`, read with `recall`. The person's id comes from the
    project's sign-in, never from the request body.
@@ -23,7 +22,7 @@ from trusted authentication; a caller-supplied id alone does not prove ownership
    unless the task asks for it.
 
 **Key.** `HARNY_API_KEY`, saved in `.env` by `harny init` (also `HARNY_APP_ID`, `HARNY_API_URL`). Never open, print or
-paste `.env`, and never put the key in browser or mobile code. Do not ask anyone for it.
+paste `.env`, and never put the key in browser or mobile code. The plugin's `harny_app_key` setting supplies it when the user has entered one.
 
 **Python** (the SDK reads `HARNY_API_KEY`; `user` is your own stable id for the person):
 
@@ -80,12 +79,12 @@ prove wiring only. Do not provision accounts or execute live calls when the task
 
 Pass `user` and nothing else to name the person: leave `identity` unset. If you set `identity` as well it must equal that same user id; any other value (the word "user", for example) is refused.
 
-**Set up** (no account, no sign-up, nothing to ask a human): put these two files in one folder, then run the command.
-It makes `.venv`, installs the SDK, creates the app, saves the key to `.env` and prints a claim link for the owner.
+**Set up** (no account, no sign-up, nothing to ask a human): install the SDK, then run the command once. Python:
+`pip install harny`. TypeScript or Node: `npm install @harny/sdk`. The command creates the app, saves the key to `.env`
+and prints a claim link for the owner.
 
 ```bash
-curl -fsSLO https://harny.ai/get/harny-init.py -O https://harny.ai/get/harny-0.1.1-py3-none-any.whl
-python3 harny-init.py init --name "<app name>" --about "<what it does>" --customers "<who uses it>" --preset cost_first --path developer
+harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>" --path developer
 ```
 
 Docs for agents: https://harny.ai/llms.txt, https://harny.ai/quickstart.md, https://harny.ai/auth.md

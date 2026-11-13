@@ -11,12 +11,12 @@ Use Harny's long mode when an agent must finish a whole job bigger than one chat
 
 ## Steps
 
-1. Check the project for `HARNY_API_KEY` in its environment or `.env` without opening or printing `.env`. If it is missing, run `harny init` (see Setup).
+1. Use the app key the user entered in this plugin's `harny_app_key` setting; the plugin passes it to the shell as `HARNY_API_KEY`. If the setting is empty, run `harny init` (see Setup).
 2. Put the input files in a workspace folder your deploy can write to. Finished files are written there.
 3. Create the agent with `long_task=LongTaskConfig(workspace=...)` in its config (long mode is off without it).
 4. Start the job with `run_task`. To resume after a stop, call it again with the same message.
 
-**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `.env` already has `HARNY_API_KEY`, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
+**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `HARNY_API_KEY` is already set, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
 
 **Python** (3.10 or newer):
 
@@ -28,7 +28,8 @@ from harny.agent.long_task import LongTaskConfig
 async with HarnyClient() as harny:
     agent = await Agent.create(
         harny=harny,
-        preset="cost_first",
+        provider="your-provider",
+        model="your-model-id",
         config=AgentConfig(
             instructions="You work through a folder of tenant emails for the office manager.",
             long_task=LongTaskConfig(workspace="./jobs/renewals"),
@@ -44,7 +45,7 @@ async with HarnyClient() as harny:
 
 **State and resume.** The task's state is kept in `.harny/` in the workspace. The same message resumes. A different message in the same folder is refused, and so is a second task running there at the same time.
 
-**Model key and failover.** The model key is the developer's own, in the provider's usual environment variable; Harny never sees it. On a transient provider error the job tries the next model of the preset that the deploy has a key for, so keys for more than one model help.
+**Model and key.** The model and the key are the developer's own: `provider=` and `model=` name the model, and the key is in the provider's usual environment variable; Harny never sees it. On a transient provider error the SDK retries the call twice; if it still fails, the turn stops and says why.
 
 **Shell.** The folder and any shell are yours; Harny hosts nothing for a long job. `LongTaskConfig(shell=...)` takes your own executor, such as a container. `allow_local_shell` is off by default, and a local shell does not start while the process holds `HARNY_*` or `*_API_KEY` variables unless you set `local_shell_sees_keys=True`.
 

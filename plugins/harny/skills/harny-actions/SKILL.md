@@ -11,12 +11,12 @@ Use Harny when an app's agent must do something for a person on their connected 
 
 ## Steps
 
-1. Check the project for `HARNY_API_KEY` in its environment or `.env` without opening or printing `.env`. If it is missing, run `harny init` (see Setup).
+1. Use the app key the user entered in this plugin's `harny_app_key` setting; the plugin passes it to the shell as `HARNY_API_KEY`. If the setting is empty, run `harny init` (see Setup).
 2. The person connects the account first (skill harny-connected-accounts) and the owner sets the permissions (below). A kind with no setting is not carried out.
 3. Call `act` with one action from the catalog and the person's id from the project's sign-in.
 4. Check `outcome`. If it is `awaiting_end_user`, the action waits for the person's yes; your code approves it, never the model. Keep `record_id` to undo.
 
-**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `.env` already has `HARNY_API_KEY`, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
+**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `HARNY_API_KEY` is already set, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
 
 **The catalog** (these five strings are the only actions): `calendar.create_event` (`title`, `start`, `end` or `duration_minutes`, `time_zone`, `description`, `location`, `attendees`), `email.send` (`to`, `subject`, `body`, `cc`, `bcc`, `thread_id`, `in_reply_to`), `ticket.create` (`subject`, `description`, `priority`: low, medium, high or urgent), `slack.post_message` (`text`, `channel`, `thread_ts`), `notion.create_page` (`title`, `content`, `parent_id`). Undo works for the calendar event, ticket, Slack message and Notion page the agent created. Sent email cannot be recalled: correct it with a follow-up email.
 

@@ -11,12 +11,12 @@ Use Harny when an AI assistant or agent needs an audit log or action history: wh
 
 ## Steps
 
-1. Check the project for `HARNY_API_KEY` in its environment or `.env` without opening or printing `.env`. If it is missing, run `harny init` (see Setup).
+1. Use the app key the user entered in this plugin's `harny_app_key` setting; the plugin passes it to the shell as `HARNY_API_KEY`. If the setting is empty, run `harny init` (see Setup).
 2. Take actions through Harny (skill harny-actions); each one is recorded with its target, status, user, time and result.
 3. To review, list the records, newest first, for one user or the whole app.
 4. To let the agent answer "what did you do about X", give it the `action_history` tool, with the user taken from your session.
 
-**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `.env` already has `HARNY_API_KEY`, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
+**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `HARNY_API_KEY` is already set, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
 
 **Python** (async client with the app key):
 

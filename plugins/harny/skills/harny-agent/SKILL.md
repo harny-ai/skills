@@ -11,12 +11,12 @@ Use Harny to run an app's own agent loop on the developer's own model key. Harny
 
 ## Steps
 
-1. Check the project for `HARNY_API_KEY` in its environment or `.env` without opening or printing `.env`. If it is missing, run `harny init` (see Setup).
+1. Use the app key the user entered in this plugin's `harny_app_key` setting; the plugin passes it to the shell as `HARNY_API_KEY`. If the setting is empty, run `harny init` (see Setup).
 2. Put the model key in the provider's usual environment variable, for example `ANTHROPIC_API_KEY`.
-3. Create the agent with a preset (`cost_first`, `quality_first` or `regulated`) and instructions, then call `run` with the person's id from the project's sign-in.
+3. Create the agent with the developer's own `provider` and `model` (Harny names none) and instructions, then call `run` with the person's id from the project's sign-in.
 4. If the result holds pending confirmations, your code approves or refuses them with `confirm`; the model cannot.
 
-**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `.env` already has `HARNY_API_KEY`, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
+**Setup.** Python: `pip install harny`. TypeScript or Node: `npm install @harny/sdk`. Key: run `harny init --name "<app name>" --about "<what it does>" --customers "<who uses it>"` once. It creates the app, saves `HARNY_API_KEY` (the app key, starts with `fsa_`) to `.env`, writes a Harny section into `AGENTS.md` and `CLAUDE.md`, and prints a claim link for the owner. If `HARNY_API_KEY` is already set, skip it. Never open, print or paste `.env`, and never put the key in browser or mobile code. Both SDKs read `HARNY_API_KEY` from the environment when no key is passed.
 
 **Python** (3.10 or newer; module `harny.agent`):
 
@@ -29,7 +29,8 @@ async def main():
     async with HarnyClient() as harny:   # app key from HARNY_API_KEY
         agent = await Agent.create(
             harny=harny,
-            preset="cost_first",
+            provider="your-provider",
+            model="your-model-id",
             config=AgentConfig(instructions="You help one person with their calendar."),
             store=FileSessionStore("./data/sessions"),
         )
@@ -47,7 +48,8 @@ import { Agent, FileSessionStore, HarnyClient } from "@harny/sdk";
 const harny = new HarnyClient({ apiKey: process.env.HARNY_API_KEY });
 const agent = await Agent.create({
     harny,
-    preset: "cost_first",
+    provider: "your-provider",
+    model: "your-model-id",
     config: { instructions: "You help one person with their calendar." },
     store: new FileSessionStore("./data/sessions"),
 });
@@ -71,7 +73,7 @@ console.log(result.answer, result.pendingConfirmations.map((p) => p.public()));
 - Running the agent in browser code. It needs the app key: server only.
 - Taking the user id from the message. It comes from the project's sign-in.
 - Letting the model approve its own pending action.
-- Leaving out `preset`, or expecting actions outside the catalog.
+- Leaving out `provider` or `model`, or expecting actions outside the catalog.
 
 **Docs**
 
